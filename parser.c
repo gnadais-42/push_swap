@@ -6,7 +6,7 @@
 /*   By: gnadais- <gnadais-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 16:50:38 by gnadais-          #+#    #+#             */
-/*   Updated: 2025/12/11 00:32:05 by gnadais-         ###   ########.fr       */
+/*   Updated: 2025/12/12 01:58:39 by gnadais-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,40 +16,50 @@ static void	exit_program();
 static int	validator(char *argument, t_lsit *args);
 static int	is_repetition(int number, t_list *args);
 
-t_list	parser(int arglen, char *args[])
+t_list	*parser(int argc, char *args[])
 {	
 	t_list	*parsed;
-	t_list	*node;
-	int		*content;
 
 	parsed = NULL;
-	if (arglen == 2)
+	if (argc == 2)
 		args = ft_split(*(++args), ' ');
-	while (*args)
+	else
+		args++;
+	parsed = create_list(argc, args);
+	return (parsed);
+}
+
+static t_list *create_list(int argc, char *args[])
+{
+	t_list	*parsed;
+	int		*content
+	int		i;
+
+	i = 0;
+	while (args[i])
 	{
-		if (!validator(*args, parsed))
-			exit_program();
+		if (!validator(args[i], parsed))
+			exit_program(argc, args, &parsed);
 		content = malloc(sizeof(int));
 		if (!content)
-		{
-			ft_lstclear(&parsed, del);
-			exit_program();
-		}
-		*content = ft_atoi(*args);
+			exit_program(argc, args, &parsed);
+		*content = ft_atoi(args[i++]);
 		node = ft_lstnew(content);
 		if (!node)
 		{
-			ft_lstclear(&parsed, del);
-			exit_program();
+			free(content);
+			exit_program(argc, args, &parsed);
 		}
 		ft_lstadd_back(&parsed, node);
-		args++;
 	}
 	return (parsed);
 }
 
-static void exit_program(void)
+static void exit_program(int argc, char *args, t_list *parsed)
 {
+	if (argc == 2)
+		free(args);
+	ft_lstclear(&parsed, free);
 	ft_putstr_fd("Error\n", 2);
 	exit(1);
 }
