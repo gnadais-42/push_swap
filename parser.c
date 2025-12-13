@@ -12,30 +12,40 @@
 
 #include "push_swap.h"
 
-static void	exit_program();
-static int	validator(char *argument, t_lsit *args);
+static void	exit_program(int argc, char **args, t_list **parsed);
+static int	validator(char *argument, t_list *args);
 static int	is_repetition(int number, t_list *args);
+static t_list *create_list(int argc, char **args);
 
-t_list	*parser(int argc, char *args[])
+t_list	*parser(int argc, char **args)
 {	
 	t_list	*parsed;
+	int	i;
 
-	parsed = NULL;
+	i = 0;
 	if (argc == 2)
 		args = ft_split(*(++args), ' ');
 	else
 		args++;
 	parsed = create_list(argc, args);
+	if (argc == 2)
+	{
+		while (args[i])
+			free(args[i++]);
+		free(args);
+	}
 	return (parsed);
 }
 
-static t_list *create_list(int argc, char *args[])
+static t_list *create_list(int argc, char **args)
 {
 	t_list	*parsed;
-	int		*content
+	t_list	*node;
+	int		*content;
 	int		i;
 
 	i = 0;
+	parsed = NULL;
 	while (args[i])
 	{
 		if (!validator(args[i], parsed))
@@ -55,11 +65,18 @@ static t_list *create_list(int argc, char *args[])
 	return (parsed);
 }
 
-static void exit_program(int argc, char *args, t_list *parsed)
+static void exit_program(int argc, char **args, t_list **parsed)
 {
+	int	i;
+
+	i = 0;
 	if (argc == 2)
+	{
+		while (args[i])
+			free(args[i++]);
 		free(args);
-	ft_lstclear(&parsed, free);
+	}
+	ft_lstclear(parsed, free);
 	ft_putstr_fd("Error\n", 2);
 	exit(1);
 }
