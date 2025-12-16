@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gnadais- <gnadais-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/10 15:10:17 by gnadais-          #+#    #+#             */
-/*   Updated: 2025/12/10 16:30:09 by gnadais-         ###   ########.fr       */
+/*   Created: 2025/12/15 15:48:50 by gnadais-          #+#    #+#             */
+/*   Updated: 2025/12/15 16:38:49 by gnadais-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "../push_swap.h"
 
-# include "libft.h"
+void	push(t_list	**dst, t_list **src)
+{
+	t_list *temp1;
+	t_list *temp2;
 
-void	rotate(t_list **stack);
-void	rr(t_list **a, t_list **b);
-void	revrotate(t_list **stack);
-void	rrr(t_list **a, t_list **b);
-void	push(t_list **dst, t_list **src);
-void	swap(t_list **stack);
-void	ss(t_list **a, t_list **b);
+	if (!*src)
+		return ;
+	temp1 = *dst;
+	temp2 = (*src)->next;
+	*dst = *src;
+	(*src)->next = temp1;
+	*src = temp2;
+	return ;
+}
 
-t_list	*parser(int argc, char **args);
-
-#endif
