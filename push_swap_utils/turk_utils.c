@@ -52,9 +52,10 @@ int	find_target(int value, t_list *stack)
 	return (index);
 }
 
-int	find_final_targets(t_list *a, t_list *b, int *target_a)
+void	find_final_targets(t_list *a, t_list *b, int *target_a, int *target_b)
 {
 	int	curr_target;
+	int	curr_value;
 	int	final_cost;
 	int	curr_cost;
 
@@ -62,13 +63,14 @@ int	find_final_targets(t_list *a, t_list *b, int *target_a)
 	while (b)
 	{
 		curr_target = find_target(*(int *)b->content, a);
-		curr_cost = get_total_cost(a, &curr_target, b, (int *)b->content);
+		curr_value = value_at_index(curr_target, a);
+		curr_cost = get_total_cost(a, &curr_value, b, (int *)b->content);
 		if (curr_cost < final_cost)
 		{
-			*target_a = curr_target;
+			*target_a = curr_value;
+			*target_b = *(int *)b->content;
 			final_cost = curr_cost;
 		}
 		b = b->next;
 	}
-	return (final_cost);
 }

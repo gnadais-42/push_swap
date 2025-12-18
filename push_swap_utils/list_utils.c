@@ -66,3 +66,15 @@ int	get_min_int(t_list *lst)
 	return (index);
 }
 
+int	value_at_index(int index, t_list *lst)
+{
+	int	value;
+
+	value = 0;
+	while (index-- > 0 && lst)
+		lst = lst->next;
+	if (lst)
+		value = *(int *)lst->content;
+	return (value);
+}
+
