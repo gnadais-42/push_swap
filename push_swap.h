@@ -15,6 +15,9 @@
 
 # include "libft.h"
 
+int		list_length(t_list *lst);
+int		get_index(void *content, t_list *lst);
+
 void	rotate(t_list **stack);
 void	rr(t_list **a, t_list **b);
 void	revrotate(t_list **stack);

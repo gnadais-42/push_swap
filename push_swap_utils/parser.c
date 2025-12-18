@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 static void	exit_program(int argc, char **args, t_list **parsed);
 static int	validator(char *argument, t_list *args);

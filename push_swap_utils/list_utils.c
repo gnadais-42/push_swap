@@ -24,3 +24,20 @@ int	list_length(t_list *lst)
 	}
 	return (len);
 }
+
+int	get_index(void *content, t_list *lst)
+{
+	int	not_found;
+	int	i;
+
+	not_found = -1;
+	i = 0;
+	while (lst)
+	{
+		if (content == lst->content)
+			return (i);
+		i++;
+		lst = lst->next;
+	}
+	return (not_found);
+}
