@@ -41,3 +41,28 @@ int	get_index(void *content, t_list *lst)
 	}
 	return (not_found);
 }
+
+int	get_min_int(t_list *lst)
+{
+	int	i;
+	int	min;
+	int	index;
+
+	if (!lst)
+		return (0);
+	i = 0;
+	index = 0;
+	min = INT_MAX;
+	while (lst)
+	{
+		if (min > *(int *)lst->content)
+		{
+			min = *(int *)lst->content;
+			index = i;
+		}
+		i++;
+		lst = lst->next;
+	}
+	return (index);
+}
+
