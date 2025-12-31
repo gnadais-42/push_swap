@@ -16,10 +16,15 @@
 # include "libft.h"
 
 int		list_length(t_list *lst);
-int		get_index(void *content, t_list *lst);
+int		get_index(int content, t_list *lst);
 int		get_min_int(t_list *lst);
 int		find_target(int value, t_list *stack);
-int		get_total_cost(t_list *a, int *value_a, t_list *b, int *value_b);
+int		value_at_index(int index, t_list *lst);
+
+int	get_total_cost(t_list *a, int *value_a, t_list *b, int *value_b);
+int	rot_cost(int index_a, int index_b);
+int	revrot_cost(t_list *a, t_list *b, int index_a, int index_b);
+int	diff_cost(t_list *a, t_list *b, int index_a, int index_b);
 
 void	rotate(t_list **stack);
 void	rr(t_list **a, t_list **b);
@@ -32,6 +37,9 @@ void	call_rule(t_list **a, t_list **b, char *rule);
 
 void	push_until_len_is_3(t_list **a, t_list **b);
 void	sort(t_list **lst);
+void	find_final_targets(t_list *a, t_list *b, int *target_a, int *target_b);
+void	last_rotations(t_list **a);
+void	turk(t_list **a, t_list **b);
 
 t_list	*parser(int argc, char **args);
 

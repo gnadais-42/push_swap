@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-void	push(t_list	**dst, t_list **src, char stack)
+void	push(t_list	**dst, t_list **src)
 {
 	t_list *temp1;
 	t_list *temp2;
@@ -24,7 +24,6 @@ void	push(t_list	**dst, t_list **src, char stack)
 	*dst = *src;
 	(*src)->next = temp1;
 	*src = temp2;
-	ft_printf("p%c\n", stack);
 	return ;
 }
 

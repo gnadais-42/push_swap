@@ -25,7 +25,7 @@ int	list_length(t_list *lst)
 	return (len);
 }
 
-int	get_index(void *content, t_list *lst)
+int	get_index(int content, t_list *lst)
 {
 	int	not_found;
 	int	i;
@@ -34,7 +34,7 @@ int	get_index(void *content, t_list *lst)
 	i = 0;
 	while (lst)
 	{
-		if (content == lst->content)
+		if (content == *(int *)lst->content)
 			return (i);
 		i++;
 		lst = lst->next;

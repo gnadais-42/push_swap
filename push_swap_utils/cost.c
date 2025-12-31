@@ -12,61 +12,65 @@
 
 #include "../push_swap.h"
 
-static int	get_cost(t_list *stack, int len, int *value);
-static int	equal_sign_cost(int cost_a, int cost_b);
-static int	different_sign_cost(int	cost_a, int len_a, int cost_b, int len_b);
-static int	absolute(int n);
-
-int	get_total_cost(t_list *a,int *value_a, t_list *b, int *value_b)
+int	get_total_cost(t_list *a, int *value_a, t_list *b, int *value_b)
 {
-	int	cost_a;
-	int	cost_b;
+	int	both_rot_cost;
+	int	both_revrot_cost;
+	int	diff_rot_cost;
+	int	index_a;
+	int	index_b;
+
+	index_a = get_index(*value_a, a);
+	index_b = get_index(*value_b, b);
+	both_rot_cost = rot_cost(index_a, index_b);
+	both_revrot_cost = revrot_cost(a, b, index_a, index_b);
+	diff_rot_cost = diff_cost(a, b, index_a, index_b);
+	if (both_rot_cost <= both_revrot_cost && both_rot_cost <= diff_rot_cost)
+		return (both_rot_cost);
+	else if (both_revrot_cost <= both_rot_cost && both_revrot_cost <= diff_rot_cost)
+		return (both_revrot_cost);
+	else
+		return (diff_rot_cost);
+}
+
+int	revrot_cost(t_list *a, t_list *b, int index_a, int index_b)
+{
 	int	len_a;
 	int	len_b;
+	int	rev_index_a;
+	int	rev_index_b;
 
 	len_a = list_length(a);
 	len_b = list_length(b);
-	cost_a = get_cost(a, len_a, value_a);
-	cost_b = get_cost(b, len_b, value_b);
-	if (cost_a >> 31 == cost_b >> 31)
-		return (equal_sign_cost(cost_a, cost_b));
+	rev_index_a = len_a - index_a;
+	rev_index_b = len_b - index_b;
+	if (rev_index_a < rev_index_b)
+		return (rev_index_b);
 	else
-		return (absolute(cost_a) + absolute(cost_b));
+		return (rev_index_a);
 }
 
-static int	get_cost(t_list *stack, int len, int *value)
+int	rot_cost(int index_a, int index_b)
 {
-	int	index;
-
-	index = get_index(value, stack);
-	if (index <= len / 2 - 1)
-		return (index);
+	if (index_a < index_b)
+		return (index_b);
 	else
-		return (index - len);
+		return (index_a);
 }
 
-static int	equal_sign_cost(int	cost_a, int cost_b)
+int	diff_cost(t_list *a, t_list *b, int index_a, int index_b)
 {
-	if (cost_a >= 0)
-	{
-		if (cost_a > cost_b)
-			return (cost_a);
-		else
-			return (cost_b);
-	}
-	else
-	{
-		if (cost_a < cost_b)
-			return (absolute(cost_a));
-		else
-			return (absolute(cost_b));
-	}
-}
+	int	len_a;
+	int	len_b;
+	int	rev_index_a;
+	int	rev_index_b;
 
-static int	absolute(int n)
-{
-	if (n > 0)
-		return (n);
+	len_a = list_length(a);
+	len_b = list_length(b);
+	rev_index_a = len_a - index_a;
+	rev_index_b = len_b - index_b;
+	if (index_a + rev_index_b < index_b + rev_index_a)
+		return (index_a + rev_index_b);
 	else
-		return (-n);
+		return (index_b + rev_index_a);
 }
