@@ -12,15 +12,15 @@
 
 #include "../push_swap.h"
 
-static void	exit_program(int argc, char **args, t_list **parsed);
-static int	validator(char *argument, t_list *args);
-static int	is_repetition(int number, t_list *args);
-static t_list *create_list(int argc, char **args);
+static void		exit_program(int argc, char **args, t_list **parsed);
+static int		validator(char *argument, t_list *args);
+static int		is_repetition(int number, t_list *args);
+static t_list	*create_list(int argc, char **args);
 
 t_list	*parser(int argc, char **args)
-{	
+{
 	t_list	*parsed;
-	int	i;
+	int		i;
 
 	i = 0;
 	if (argc == 2)
@@ -37,7 +37,7 @@ t_list	*parser(int argc, char **args)
 	return (parsed);
 }
 
-static t_list *create_list(int argc, char **args)
+static t_list	*create_list(int argc, char **args)
 {
 	t_list	*parsed;
 	t_list	*node;
@@ -65,7 +65,7 @@ static t_list *create_list(int argc, char **args)
 	return (parsed);
 }
 
-static void exit_program(int argc, char **args, t_list **parsed)
+static void	exit_program(int argc, char **args, t_list **parsed)
 {
 	int	i;
 
@@ -88,6 +88,8 @@ static int	validator(char *argument, t_list *llist)
 	if (!argument || !*argument)
 		return (0);
 	number = ft_atoi(argument);
+	if (*argument == '-')
+		argument++;
 	while (*argument)
 	{
 		if (!ft_isdigit(*argument++))

@@ -12,11 +12,10 @@
 
 #include "../push_swap.h"
 
-static void     call_sort(t_list **a, t_list **b, int target_a, int target_b);
-static void     both_revrot(t_list **a, t_list **b, int index_a, int index_b);
-static void     both_rot(t_list **a, t_list **b, int index_a, int index_b);
-static void     diff_rot(t_list **a, t_list **b, int index_a, int index_b);
-void	print_lists(t_list *a, t_list *b);
+static void	call_sort(t_list **a, t_list **b, int target_a, int target_b);
+static void	both_revrot(t_list **a, t_list **b, int index_a, int index_b);
+static void	both_rot(t_list **a, t_list **b, int index_a, int index_b);
+static void	diff_rot(t_list **a, t_list **b, int index_a, int index_b);
 
 void	turk(t_list **a, t_list **b)
 {
@@ -27,12 +26,11 @@ void	turk(t_list **a, t_list **b)
 	sort(a);
 	while (*b)
 	{
-		//print_lists(*a, *b);
 		find_final_targets(*a, *b, &target_a, &target_b);
 		call_sort(a, b, target_a, target_b);
-		//print_lists(*a, *b);
 		call_rule(a, b, "pa");
 	}
+	last_rotations(a);
 }
 
 static void	call_sort(t_list **a, t_list **b, int target_a, int target_b)
@@ -40,17 +38,17 @@ static void	call_sort(t_list **a, t_list **b, int target_a, int target_b)
 	int	index_a;
 	int	index_b;
 	int	both_rot_cost;
-	int	both_revrot_cost;
+	int	both_rev_cost;
 	int	diff_rot_cost;
 
 	index_a = get_index(target_a, *a);
 	index_b = get_index(target_b, *b);
 	both_rot_cost = rot_cost(index_a, index_b);
-	both_revrot_cost = revrot_cost(*a, *b, index_a, index_b);
+	both_rev_cost = revrot_cost(*a, *b, index_a, index_b);
 	diff_rot_cost = diff_cost(*a, *b, index_a, index_b);
-	if (both_rot_cost <= both_revrot_cost && both_rot_cost <= diff_rot_cost)
+	if (both_rot_cost <= both_rev_cost && both_rot_cost <= diff_rot_cost)
 		both_rot(a, b, index_a, index_b);
-	else if (both_revrot_cost <= both_rot_cost && both_revrot_cost <= diff_rot_cost)
+	else if (both_rev_cost <= both_rot_cost && both_rev_cost <= diff_rot_cost)
 		both_revrot(a, b, index_a, index_b);
 	else
 		diff_rot(a, b, index_a, index_b);
@@ -122,29 +120,5 @@ static void	diff_rot(t_list **a, t_list **b, int index_a, int index_b)
 			call_rule(a, b, "rb");
 		while (index_a++ < len_a)
 			call_rule(a, b, "rra");
-	}
-}
-
-void	print_lists(t_list *a, t_list *b)
-{
-	ft_printf("a | b\n");
-	while (a || b)
-	{
-		if (a && b)
-		{
-			ft_printf("%i | %i\n", *(int *)a->content, *(int *)b->content);
-			a = a->next;
-			b = b->next;
-		}
-		else if (a)
-		{
-			ft_printf("%i | null\n", *(int *)a->content);
-			a = a->next;
-		}
-		else
-		{
-			ft_printf("null | %i\n", *(int *)b->content);
-			b = b->next;
-		}
 	}
 }

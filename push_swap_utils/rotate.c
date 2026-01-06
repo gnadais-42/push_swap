@@ -15,14 +15,14 @@
 void	rotate(t_list **stack)
 {
 	t_list	*temp;
-	
+
 	if (!*stack || !(*stack)->next)
 		return ;
 	temp = *stack;
 	*stack = (*stack)->next;
 	temp->next = NULL;
 	ft_lstadd_back(stack, temp);
-	return;
+	return ;
 }
 
 void	rr(t_list **a, t_list **b)

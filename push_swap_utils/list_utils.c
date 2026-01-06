@@ -77,4 +77,3 @@ int	value_at_index(int index, t_list *lst)
 		value = *(int *)lst->content;
 	return (value);
 }
-

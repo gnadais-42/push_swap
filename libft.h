@@ -66,19 +66,32 @@ size_t	ft_strlen(const char *s);
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-void	ft_lstadd_back(t_list **lst, t_list *new_node);
-void	ft_lstadd_front(t_list **lst, t_list *new_node);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 int		ft_lstsize(t_list *lst);
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif
+
+int		find_newline(char *str);
+char	*str_nappend(char *str1, char *str2, int n);
+char	*create_line(char *str, int index);
+char	*trim_leftover(char *str, int index);
+char	*read_into_leftover(int fd, char *leftover);
+char	*read_helper(int fd, char *leftover, char *buffer, int *bytes_read);
+char	*get_next_line(int fd);
+
 
 int		ft_printf(const char *format, ...);
 int		ft_putchar_count(char c);
 int		ft_putstr_count(char *str);
 int		ft_putnbr_count(int nbr);
 int		ft_putunbr_count(unsigned int nbr);
-int		ft_puthex_count(unsigned int nbr, char x);
+int		ft_puthex_count(unsigned int nbr, char format);
 int		ft_putptr_count(void *ptr);
 int		conversion(char sign, va_list args);
 

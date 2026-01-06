@@ -8,5 +8,6 @@ int	main(int argc, char *argv[])
 	a = parser(argc, argv);
 	b = NULL;
 	turk(&a, &b);
-	last_rotations(&a);
+	ft_lstclear(&a, free);
+	return (0);
 }

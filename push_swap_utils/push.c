@@ -14,8 +14,8 @@
 
 void	push(t_list	**dst, t_list **src)
 {
-	t_list *temp1;
-	t_list *temp2;
+	t_list	*temp1;
+	t_list	*temp2;
 
 	if (!*src)
 		return ;
@@ -26,4 +26,3 @@ void	push(t_list	**dst, t_list **src)
 	*src = temp2;
 	return ;
 }
-

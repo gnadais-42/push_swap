@@ -54,10 +54,10 @@ int	find_target(int value, t_list *stack)
 
 void	find_final_targets(t_list *a, t_list *b, int *target_a, int *target_b)
 {
-	int	curr_target;
-	int	curr_value;
-	int	final_cost;
-	int	curr_cost;
+	int		curr_target;
+	int		curr_value;
+	int		final_cost;
+	int		curr_cost;
 	t_list	*b_copy;
 
 	b_copy = b;

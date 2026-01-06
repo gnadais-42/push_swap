@@ -15,7 +15,7 @@
 int	get_total_cost(t_list *a, int *value_a, t_list *b, int *value_b)
 {
 	int	both_rot_cost;
-	int	both_revrot_cost;
+	int	both_rev_cost;
 	int	diff_rot_cost;
 	int	index_a;
 	int	index_b;
@@ -23,12 +23,12 @@ int	get_total_cost(t_list *a, int *value_a, t_list *b, int *value_b)
 	index_a = get_index(*value_a, a);
 	index_b = get_index(*value_b, b);
 	both_rot_cost = rot_cost(index_a, index_b);
-	both_revrot_cost = revrot_cost(a, b, index_a, index_b);
+	both_rev_cost = revrot_cost(a, b, index_a, index_b);
 	diff_rot_cost = diff_cost(a, b, index_a, index_b);
-	if (both_rot_cost <= both_revrot_cost && both_rot_cost <= diff_rot_cost)
+	if (both_rot_cost <= both_rev_cost && both_rot_cost <= diff_rot_cost)
 		return (both_rot_cost);
-	else if (both_revrot_cost <= both_rot_cost && both_revrot_cost <= diff_rot_cost)
-		return (both_revrot_cost);
+	else if (both_rev_cost <= both_rot_cost && both_rev_cost <= diff_rot_cost)
+		return (both_rev_cost);
 	else
 		return (diff_rot_cost);
 }
