@@ -12,7 +12,7 @@
 
 #include "get_next_line_bonus.h"
 
-int	ft_strlen_GNL(char *str)
+int	ft_strlen_gnl(char *str)
 {
 	int	len;
 
@@ -47,7 +47,7 @@ char	*str_nappend(char *str1, char *str2, int n)
 	int		i;
 	int		j;
 
-	len = ft_strlen_GNL(str1);
+	len = ft_strlen_gnl(str1);
 	joined = (char *) malloc (sizeof(char) * (len + n + 1));
 	if (!joined)
 	{
@@ -74,7 +74,7 @@ char	*create_line(char *str, int index)
 	if (!str || !*str)
 		return (NULL);
 	if (index == -1)
-		index = ft_strlen_GNL(str) - 1;
+		index = ft_strlen_gnl(str) - 1;
 	line = (char *) malloc(sizeof(char) * (index + 2));
 	if (!line)
 		return (NULL);
@@ -93,7 +93,7 @@ char	*trim_leftover(char *str, int index)
 
 	if (!str)
 		return (NULL);
-	len = ft_strlen_GNL(str);
+	len = ft_strlen_gnl(str);
 	if (index == -1)
 	{
 		free(str);

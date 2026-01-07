@@ -21,10 +21,10 @@ int		get_min_int(t_list *lst);
 int		find_target(int value, t_list *stack);
 int		value_at_index(int index, t_list *lst);
 
-int	get_total_cost(t_list *a, int *value_a, t_list *b, int *value_b);
-int	rot_cost(int index_a, int index_b);
-int	revrot_cost(t_list *a, t_list *b, int index_a, int index_b);
-int	diff_cost(t_list *a, t_list *b, int index_a, int index_b);
+int		get_total_cost(t_list *a, int *value_a, t_list *b, int *value_b);
+int		rot_cost(int index_a, int index_b);
+int		revrot_cost(t_list *a, t_list *b, int index_a, int index_b);
+int		diff_cost(t_list *a, t_list *b, int index_a, int index_b);
 
 void	rotate(t_list **stack);
 void	rr(t_list **a, t_list **b);
