@@ -13,7 +13,7 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "libft.h"
+# include "libft/libft.h"
 
 int		list_length(t_list *lst);
 int		get_index(int content, t_list *lst);
@@ -42,5 +42,6 @@ void	last_rotations(t_list **a);
 void	turk(t_list **a, t_list **b);
 
 t_list	*parser(int argc, char **args);
+int		validator(char *argument, t_list *lst);
 
 #endif

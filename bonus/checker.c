@@ -3,6 +3,7 @@
 static int	sorted(t_list *a);
 static void	call_rule_no_print(t_list **a, t_list **b, char *rule);
 static int	ft_strcmp(char *str1, char *str2);
+static void	error(t_list **a, t_list **b, char *rule);
 
 int	main(int argc, char *argv[])
 {
@@ -10,12 +11,15 @@ int	main(int argc, char *argv[])
 	t_list	*b;
 	char	*rule;
 
+	if (argc == 1)
+		return (0);
 	a = parser(argc, argv);
 	b = NULL;
 	rule = get_next_line(0);
 	while (rule)
 	{
 		call_rule_no_print(&a, &b, rule);
+		free(rule);
 		rule = get_next_line(0);
 	}
 	if (sorted(a))
@@ -23,6 +27,8 @@ int	main(int argc, char *argv[])
 	else
 		ft_printf("KO\n");
 	ft_lstclear(&a, free);
+	ft_lstclear(&b, free);
+	free(rule);
 	return (0);
 }
 
@@ -83,4 +89,13 @@ static int	ft_strcmp(char *str1, char *str2)
 		str2++;
 	}
 	return (*str1 - *str2);
+}
+
+static void	error(t_list **a, t_list **b, char *rule)
+{
+	ft_lstclear(a, free);
+	ft_lstclear(b, free);
+	free(rule);
+	ft_putstr_fd("Error\n", 2);
+	exit(1);
 }

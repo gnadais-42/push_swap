@@ -13,8 +13,6 @@
 #include "../push_swap.h"
 
 static void		exit_program(int argc, char **args, t_list **parsed);
-static int		validator(char *argument, t_list *args);
-static int		is_repetition(int number, t_list *args);
 static t_list	*create_list(int argc, char **args);
 
 t_list	*parser(int argc, char **args)
@@ -79,34 +77,4 @@ static void	exit_program(int argc, char **args, t_list **parsed)
 	ft_lstclear(parsed, free);
 	ft_putstr_fd("Error\n", 2);
 	exit(1);
-}
-
-static int	validator(char *argument, t_list *llist)
-{
-	int	number;
-
-	if (!argument || !*argument)
-		return (0);
-	number = ft_atoi(argument);
-	if (*argument == '-')
-		argument++;
-	while (*argument)
-	{
-		if (!ft_isdigit(*argument++))
-			return (0);
-	}
-	if (is_repetition(number, llist))
-		return (0);
-	return (1);
-}
-
-static int	is_repetition(int number, t_list *llist)
-{
-	while (llist)
-	{
-		if (llist->content && *(int *)llist->content == number)
-			return (1);
-		llist = llist->next;
-	}
-	return (0);
 }
