@@ -4,9 +4,9 @@ BONUS = checker
 COMPILER = cc -Wall -Werror -Wextra
 SRC = main.c push_swap_utils/cost.c push_swap_utils/push.c push_swap_utils/swap.c push_swap_utils/rotate.c \
       push_swap_utils/sort.c push_swap_utils/list_utils.c push_swap_utils/parser.c push_swap_utils/turk.c\
-      push_swap_utils/turk_utils.c push_swap_utils/rule_caller.c push_swap_utils/validator.c
+      push_swap_utils/turk_utils.c push_swap_utils/rule_caller.c push_swap_utils/validator.c push_swap_utils/is_sorted.c
 OBJ = $(SRC:.c=.o)
-BSRC = bonus/checker.c push_swap_utils/parser.c push_swap_utils/push.c push_swap_utils/swap.c push_swap_utils/rotate.c push_swap_utils/validator.c
+BSRC = bonus/checker.c push_swap_utils/parser.c push_swap_utils/push.c push_swap_utils/swap.c push_swap_utils/rotate.c push_swap_utils/validator.c push_swap_utils/is_sorted.c
 BOBJ = $(BSRC:.c=.o)
 INC = push_swap.h
 LIB = libft/libft.a

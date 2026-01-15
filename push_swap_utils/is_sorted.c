@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   is_sorted.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gnadais- <gnadais-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/07 17:56:08 by gnadais-          #+#    #+#             */
-/*   Updated: 2026/01/07 17:56:18 by gnadais-         ###   ########.fr       */
+/*   Created: 2026/01/15 13:01:41 by gnadais-          #+#    #+#             */
+/*   Updated: 2026/01/15 13:02:15 by gnadais-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-int	main(int argc, char *argv[])
+int	is_sorted(t_list *a)
 {
-	t_list	*a;
-	t_list	*b;
+	int	previous;
 
-	a = parser(argc, argv);
-	b = NULL;
-	if (!is_sorted(a))
-		turk(&a, &b);
-	ft_lstclear(&a, free);
-	return (0);
+	previous = INT_MIN;
+	while (a)
+	{
+		if (*(int *)a->content < previous)
+			return (0);
+		previous = *(int *)a->content;
+		a = a->next;
+	}
+	return (1);
 }

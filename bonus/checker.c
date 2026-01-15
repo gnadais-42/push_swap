@@ -12,7 +12,6 @@
 
 #include "../push_swap.h"
 
-static int	sorted(t_list *a);
 static void	call_rule_no_print(t_list **a, t_list **b, char *rule);
 static int	ft_strcmp(char *str1, char *str2);
 static void	error(t_list **a, t_list **b, char *rule);
@@ -34,7 +33,7 @@ int	main(int argc, char *argv[])
 		free(rule);
 		rule = get_next_line(0);
 	}
-	if (sorted(a))
+	if (is_sorted(a))
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
@@ -42,21 +41,6 @@ int	main(int argc, char *argv[])
 	ft_lstclear(&b, free);
 	free(rule);
 	return (0);
-}
-
-static int	sorted(t_list *a)
-{
-	int	previous;
-
-	previous = INT_MIN;
-	while (a)
-	{
-		if (*(int *)a->content < previous)
-			return (0);
-		previous = *(int *)a->content;
-		a = a->next;
-	}
-	return (1);
 }
 
 static void	call_rule_no_print(t_list **a, t_list **b, char *rule)

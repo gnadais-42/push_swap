@@ -43,5 +43,6 @@ void	turk(t_list **a, t_list **b);
 
 t_list	*parser(int argc, char **args);
 int		validator(char *argument, t_list *lst);
+int		is_sorted(t_list *a);
 
 #endif
